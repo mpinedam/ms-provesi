@@ -19,10 +19,19 @@ services:
       POSTGRES_USER: users_user
       POSTGRES_PASSWORD: users_password
     ports:
-      - "5433:5432"   # 👈 distinto puerto en el host
+      - "5433:5432"
     volumes:
       - users-db-data:/var/lib/postgresql/data
+
+  products-mongo:
+    image: mongo:6
+    container_name: products-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - products-mongo-data:/data/db
 
 volumes:
   orders-db-data:
   users-db-data:
+  products-mongo-data:
