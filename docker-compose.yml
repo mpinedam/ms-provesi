@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   orders-db:
     image: postgres:15
@@ -13,5 +11,18 @@ services:
     volumes:
       - orders-db-data:/var/lib/postgresql/data
 
+  users-db:
+    image: postgres:15
+    container_name: users-db
+    environment:
+      POSTGRES_DB: users_db
+      POSTGRES_USER: users_user
+      POSTGRES_PASSWORD: users_password
+    ports:
+      - "5433:5432"   # 👈 distinto puerto en el host
+    volumes:
+      - users-db-data:/var/lib/postgresql/data
+
 volumes:
   orders-db-data:
+  users-db-data:
