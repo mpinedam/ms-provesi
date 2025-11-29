@@ -2,7 +2,7 @@ import os
 from typing import List, Optional
 
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from dotenv import load_dotenv
 from pymongo import MongoClient
 from bson import ObjectId
@@ -19,20 +19,7 @@ products_collection = db["products"]
 app = FastAPI(title="Products Service", version="0.1.0")
 
 
-# ====== Helpers ======
-class PyObjectId(ObjectId):
-    @classmethod
-    def __get_validators__(cls):
-        yield cls.validate
-
-    @classmethod
-    def validate(cls, v):
-        if not ObjectId.is_valid(v):
-            raise ValueError("Invalid objectid")
-        return ObjectId(v)
-
-
-# ====== Esquemas Pydantic ======
+# ====== Esquemas Pydantic simples (sin tipos raros) ======
 class ProductBase(BaseModel):
     name: str
     description: Optional[str] = ""
@@ -46,11 +33,23 @@ class ProductCreate(ProductBase):
 
 
 class Product(ProductBase):
-    id: PyObjectId = Field(alias="_id")
+    id: str   # 👈 devolvemos el _id de Mongo como string
 
-    class Config:
-        json_encoders = {ObjectId: str}
-        allow_population_by_field_name = True
+
+# ====== Helpers para serializar documentos de Mongo ======
+def serialize_product(doc) -> dict:
+    """
+    Convierte un documento de MongoDB a un dict amigable para Product.
+    Reemplaza _id (ObjectId) por id (str).
+    """
+    return {
+        "id": str(doc["_id"]),
+        "name": doc.get("name", ""),
+        "description": doc.get("description", ""),
+        "price": doc.get("price", 0),
+        "stock": doc.get("stock", 0),
+        "category": doc.get("category", ""),
+    }
 
 
 # ====== Endpoints ======
@@ -62,15 +61,15 @@ def health_check():
 
 @app.get("/api/products", response_model=List[Product], tags=["products"])
 def list_products():
-    products = list(products_collection.find())
-    return products
+    docs = list(products_collection.find())
+    return [serialize_product(d) for d in docs]
 
 
 @app.post("/api/products", response_model=Product, tags=["products"])
 def create_product(product_in: ProductCreate):
     result = products_collection.insert_one(product_in.dict())
-    new_product = products_collection.find_one({"_id": result.inserted_id})
-    return new_product
+    new_doc = products_collection.find_one({"_id": result.inserted_id})
+    return serialize_product(new_doc)
 
 
 @app.get("/api/products/{product_id}", response_model=Product, tags=["products"])
@@ -80,7 +79,8 @@ def get_product(product_id: str):
     except Exception:
         raise HTTPException(status_code=400, detail="product_id inválido")
 
-    product = products_collection.find_one({"_id": oid})
-    if not product:
+    doc = products_collection.find_one({"_id": oid})
+    if not doc:
         raise HTTPException(status_code=404, detail=f"Producto con id={product_id} no existe")
-    return product
+
+    return serialize_product(doc)

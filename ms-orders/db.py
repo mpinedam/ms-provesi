@@ -1,9 +1,6 @@
 import os
-from sqlalchemy import create_engine, Column, Integer
+from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import sessionmaker, declarative_base
-from dotenv import load_dotenv
-
-load_dotenv()
 
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
@@ -21,5 +18,5 @@ class OrderDB(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, nullable=False)
-    product_id = Column(Integer, nullable=False)
+    product_id = Column(String, nullable=False)
     quantity = Column(Integer, nullable=False)
