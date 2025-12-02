@@ -10,11 +10,22 @@ services:
           - /users
 
   - name: products-service
-    url: http://host.docker.internal:8001/api/products
+    url: http://<PRODUCTS_EC2_PRIVATE_IP>:8001/api/products
     routes:
       - name: products-route
         paths:
           - /products
+    plugins:
+      - name: proxy-cache
+        config:
+          strategy: memory
+          cache_ttl: 30          # tiempo en segundos que se cachea la respuesta
+          request_method:
+            - GET
+          content_type:
+            - "application/json"
+          memory:
+            dictionary_name: kong_cache
 
   - name: orders-service
     url: http://host.docker.internal:8080/orders
