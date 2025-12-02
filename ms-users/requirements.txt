@@ -1,7 +1,9 @@
 asgiref==3.11.0
 Django==4.2.26
 djangorestframework==3.16.1
+Faker==37.12.0
 psycopg2-binary==2.9.11
 python-dotenv==1.2.1
 sqlparse==0.5.4
 typing_extensions==4.15.0
+tzdata==2025.2
