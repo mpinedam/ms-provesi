@@ -22,3 +22,9 @@ services:
       - name: orders-route
         paths:
           - /orders
+
+plugins:
+  - name: rate-limiting
+    config:
+      minute: 10
+      policy: local
