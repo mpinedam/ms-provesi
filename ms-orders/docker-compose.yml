@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  orders-api:
+    build: .
+    container_name: ms-orders
+    ports:
+      - "8080:8080"
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      USERS_SERVICE_URL: ${USERS_SERVICE_URL}
+      PRODUCTS_SERVICE_URL: ${PRODUCTS_SERVICE_URL}

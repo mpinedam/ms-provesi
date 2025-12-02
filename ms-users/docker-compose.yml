@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  users-api:
+    build: .
+    container_name: ms-users
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: ${DATABASE_URL}

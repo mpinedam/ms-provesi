@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  products-api:
+    build: .
+    container_name: ms-product
+    ports:
+      - "8001:8001"
+    environment:
+      MONGO_URL: ${MONGO_URL}
