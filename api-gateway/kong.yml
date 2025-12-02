@@ -1,0 +1,24 @@
+_format_version: "3.0"
+_transform: true
+
+services:
+  - name: users-service
+    url: http://host.docker.internal:8000/api/users
+    routes:
+      - name: users-route
+        paths:
+          - /users
+
+  - name: products-service
+    url: http://host.docker.internal:8001/api/products
+    routes:
+      - name: products-route
+        paths:
+          - /products
+
+  - name: orders-service
+    url: http://host.docker.internal:8080/orders
+    routes:
+      - name: orders-route
+        paths:
+          - /orders
