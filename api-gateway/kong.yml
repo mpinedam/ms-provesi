@@ -10,7 +10,7 @@ services:
           - /users
 
   - name: products-service
-    url: http://<PRODUCTS_EC2_PRIVATE_IP>:8001/api/products
+    url: http://host.docker.internal:8000/api/products
     routes:
       - name: products-route
         paths:
@@ -19,7 +19,7 @@ services:
       - name: proxy-cache
         config:
           strategy: memory
-          cache_ttl: 30          # tiempo en segundos que se cachea la respuesta
+          cache_ttl: 60
           request_method:
             - GET
           content_type:
