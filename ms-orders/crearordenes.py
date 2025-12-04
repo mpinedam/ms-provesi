@@ -12,7 +12,7 @@ PRODUCTS_SERVICE_URL = os.getenv("PRODUCTS_SERVICE_URL", "http://44.200.73.143:8
 
 fake = Faker()
 
-NUM_ORDERS = 10  # ajusta este número según lo que necesites
+NUM_ORDERS = 1000  # ajusta este número según lo que necesites
 
 
 def get_all_users():
