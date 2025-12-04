@@ -3,7 +3,6 @@ resource "aws_instance" "mongo" {
   instance_type               = "t3.micro"
   vpc_security_group_ids      = [aws_security_group.traffic_mongo.id, aws_security_group.traffic_ssh.id]
   associate_public_ip_address = true
-  private_ip = "10.0.1.32"
 
   user_data = file("${path.module}/userdata/mongo.sh")
 
