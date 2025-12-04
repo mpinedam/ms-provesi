@@ -76,3 +76,20 @@ resource "aws_security_group" "traffic_mongo" {
     Name = "${var.project_prefix}-traffic-mongo"
   }
 }
+
+resource "aws_security_group" "traffic_api" {
+    name        = "${var.project_prefix}-traffic-api"
+    description = "Allow application traffic on port 8000"
+
+    ingress {
+        description = "HTTP access for gateway layer"
+        from_port   = 8000
+        to_port     = 8000
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    tags = merge(local.common_tags, {
+        Name = "${var.project_prefix}-traffic-api"
+    })
+}
