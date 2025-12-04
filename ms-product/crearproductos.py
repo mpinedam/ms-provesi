@@ -6,7 +6,7 @@ import random
 
 load_dotenv()
 
-MONGO_URL = os.getenv("MONGO_URL", "mongodb://localhost:27017")
+MONGO_URL = os.getenv("MONGO_URL", "mongodb://10.0.1.32:27017")
 MONGO_DB_NAME = os.getenv("MONGO_DB_NAME", "products_db")
 
 fake = Faker()
