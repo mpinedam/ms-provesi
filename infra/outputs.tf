@@ -18,10 +18,11 @@ output "mongo_private_ip" {
   value = aws_instance.mongo.private_ip
 }
 
-output "users_rds_endpoint" {
-  value = aws_db_instance.usersdb.address
+output "users_db_private_ip" {
+  value = aws_instance.users_db.private_ip
 }
 
-output "orders_rds_endpoint" {
-  value = aws_db_instance.ordersdb.address
+output "orders_db_private_ip" {
+  value = aws_instance.orders_db.private_ip
 }
+
