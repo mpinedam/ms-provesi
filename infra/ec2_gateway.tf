@@ -1,4 +1,4 @@
-resource "aws_instance" "api-gateway" {
+resource "aws_instance" "apigateway" {
   ami                         = "ami-0c101f26f147fa7fd"
   instance_type               = "t3.micro"
   subnet_id                   = aws_subnet.public.id

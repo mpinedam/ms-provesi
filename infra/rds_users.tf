@@ -3,7 +3,7 @@ resource "aws_db_instance" "usersdb" {
   engine               = "postgres"
   engine_version       = "15"
   instance_class       = "db.t3.micro"
-  name                 = "usersdb"
+  db_name              = "usersdb"
   username             = "admin"
   password             = "admin1234"
   skip_final_snapshot  = true

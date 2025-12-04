@@ -1,5 +1,5 @@
 output "kong_public_ip" {
-  value = aws_instance.kong.public_ip
+  value = aws_instance.apigateway.public_ip
 }
 
 output "users_service_private_ip" {
