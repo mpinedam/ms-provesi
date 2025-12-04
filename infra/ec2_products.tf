@@ -4,7 +4,9 @@ resource "aws_instance" "products" {
   subnet_id      = aws_subnet.public.id
   vpc_security_group_ids = [aws_security_group.internal.id]
   associate_public_ip_address = true
+  private_ip = "10.0.1.153"
   user_data      = file("${path.module}/userdata/products.sh")
+  
 
   tags = {
     Name = "ms-products"

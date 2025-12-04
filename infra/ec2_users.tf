@@ -4,8 +4,9 @@ resource "aws_instance" "users" {
   subnet_id      = aws_subnet.public.id
   vpc_security_group_ids = [aws_security_group.internal.id]
   associate_public_ip_address = true
+  private_ip = "10.0.1.53"
   user_data      = file("${path.module}/userdata/users.sh")
-
+  
   tags = {
     Name = "ms-users"
   }

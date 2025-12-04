@@ -4,6 +4,7 @@ resource "aws_instance" "users_db" {
   subnet_id                   = aws_subnet.public.id
   vpc_security_group_ids      = [aws_security_group.internal.id]
   associate_public_ip_address = true
+  private_ip = "10.0.1.161"
 
   user_data = file("${path.module}/userdata/users_db.sh")
 
