@@ -1,5 +1,5 @@
 resource "aws_instance" "users_db" {
-  ami                         = "ami-0c101f26f147fa7fd"
+  ami                         = "ami-051685736c7b35f95"
   instance_type               = "t3.micro"
   vpc_security_group_ids      = [aws_security_group.traffic_db.id, aws_security_group.traffic_ssh.id]
   associate_public_ip_address = true
