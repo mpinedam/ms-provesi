@@ -7,9 +7,9 @@ services:
     environment:
       KONG_DATABASE: "off"
       KONG_DECLARATIVE_CONFIG: /etc/kong/kong.yml
-      KONG_PROXY_LISTEN: "0.0.0.0:8002"
+      KONG_PROXY_LISTEN: "0.0.0.0:8080"
     volumes:
       - ./kong.yml:/etc/kong/kong.yml
       - ./logs:/usr/local/kong/logs
     ports:
-      - "8002:8002"   # Gateway público
+      - "8080:8080"   # Gateway público
