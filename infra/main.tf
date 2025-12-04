@@ -1,35 +1,13 @@
-module "vpc" {
-  source = "./vpc.tf"
+terraform {
+  required_version = ">= 1.3.0"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
 }
 
-module "security" {
-  source = "./security.tf"
-}
-
-module "gateway" {
-  source = "./ec2_gateway.tf"
-}
-
-module "users" {
-  source = "./ec2_users.tf"
-}
-
-module "orders" {
-  source = "./ec2_orders.tf"
-}
-
-module "products" {
-  source = "./ec2_products.tf"
-}
-
-module "mongo" {
-  source = "./ec2_mongo.tf"
-}
-
-module "rds_users" {
-  source = "./rds_users.tf"
-}
-
-module "rds_orders" {
-  source = "./rds_orders.tf"
+provider "aws" {
+  region = var.aws_region
 }
