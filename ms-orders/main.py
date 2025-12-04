@@ -12,8 +12,9 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Orders Service", version="0.1.0")
 
-USERS_SERVICE_URL = os.getenv("USERS_SERVICE_URL", "http://localhost:8000/api/users")
-PRODUCTS_SERVICE_URL = os.getenv("PRODUCTS_SERVICE_URL", "http://localhost:8001/api/products")
+USERS_SERVICE_URL = os.getenv("USERS_SERVICE_URL", "http://100.28.123.83:8000/api/users")
+PRODUCTS_SERVICE_URL = os.getenv("PRODUCTS_SERVICE_URL", "http://44.200.73.143:8001/api/products")
+
 
 
 class Order(BaseModel):
