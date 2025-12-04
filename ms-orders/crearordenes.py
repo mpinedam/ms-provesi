@@ -6,9 +6,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-ORDERS_SERVICE_URL = os.getenv("ORDERS_SERVICE_URL", "http://localhost:8080")
-USERS_SERVICE_URL = os.getenv("USERS_SERVICE_URL", "http://localhost:8000/api/users")
-PRODUCTS_SERVICE_URL = os.getenv("PRODUCTS_SERVICE_URL", "http://localhost:8001/api/products")
+ORDERS_SERVICE_URL = os.getenv("ORDERS_SERVICE_URL", "http://10.0.1.60:8080")
+USERS_SERVICE_URL = os.getenv("USERS_SERVICE_URL", "http://10.0.1.53:8000/api/users")
+PRODUCTS_SERVICE_URL = os.getenv("PRODUCTS_SERVICE_URL", "http://10.0.1.153:8001/api/products")
 
 fake = Faker()
 
