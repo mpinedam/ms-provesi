@@ -10,9 +10,9 @@ resource "aws_security_group" "traffic_apps" {
         cidr_blocks = ["0.0.0.0/0"]
     }
 
-    tags = merge(local.common_tags, {
+    tags = {
         Name = "${var.project_prefix}-traffic-apps"
-    })
+    }
 }
 
 # Recurso. Define el grupo de seguridad para el tráfico de las bases de datos (5432).
@@ -28,9 +28,9 @@ resource "aws_security_group" "traffic_db" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = merge(local.common_tags, {
+  tags = {
     Name = "${var.project_prefix}-traffic-db"
-  })
+  }
 }
 
 # Recurso. Define el grupo de seguridad para el tráfico SSH (22) y permite todo el tráfico saliente.
@@ -54,9 +54,9 @@ resource "aws_security_group" "traffic_ssh" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = merge(local.common_tags, {
+  tags = {
     Name = "${var.project_prefix}-traffic-ssh"
-  })
+  }
 }
 
 # Recurso. Define el grupo de seguridad para el tráfico de MongoDB (27017).
@@ -72,7 +72,7 @@ resource "aws_security_group" "traffic_mongo" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = merge(local.common_tags, {
+  tags = {
     Name = "${var.project_prefix}-traffic-mongo"
-  })
+  }
 }
