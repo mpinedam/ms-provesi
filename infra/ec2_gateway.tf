@@ -1,9 +1,9 @@
 resource "aws_instance" "apigateway" {
-  ami                         = "ami-0c101f26f147fa7fd"
+  ami                         = data.aws_ami.ubuntu.id
   instance_type               = "t3.micro"
-  subnet_id                   = aws_subnet.public.id
-  vpc_security_group_ids      = [aws_security_group.gateway.id, aws_security_group.internal.id]
   associate_public_ip_address = true
+  vpc_security_group_ids      = [aws_security_group.gateway.id, aws_security_group.internal.id]
+  
 
   user_data = file("${path.module}/userdata/kong.sh")
 
