@@ -5,8 +5,6 @@ resource "aws_instance" "apigateway" {
   vpc_security_group_ids      = [aws_security_group.traffic_api.id, aws_security_group.traffic_ssh.id]
   
 
-  user_data = file("${path.module}/userdata/kong.sh")
-
   tags = {
     Name = "apigateway"
   }

@@ -4,7 +4,6 @@ resource "aws_instance" "mongo" {
   vpc_security_group_ids      = [aws_security_group.traffic_mongo.id, aws_security_group.traffic_ssh.id]
   associate_public_ip_address = true
 
-  user_data = file("${path.module}/userdata/mongo.sh")
 
   tags = {
     Name = "mongo-ec2"
