@@ -3,14 +3,14 @@ _transform: true
 
 services:
   - name: users-service
-    url: http://host.docker.internal:8000/api/users
+    url: http://10.0.1.53:8000/api/users
     routes:
       - name: users-route
         paths:
           - /users
 
   - name: products-service
-    url: http://host.docker.internal:8000/api/products
+    url: http://10.0.1.153:8000/api/products
     routes:
       - name: products-route
         paths:
@@ -28,7 +28,7 @@ services:
             dictionary_name: kong_cache
 
   - name: orders-service
-    url: http://host.docker.internal:8080/orders
+    url: http://10.0.1.60:8080/orders
     routes:
       - name: orders-route
         paths:
