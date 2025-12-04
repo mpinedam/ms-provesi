@@ -59,7 +59,7 @@ def run():
     created = 0
 
     for _ in range(NUM_ORDERS):
-        user_id = random.choice(user_ids)
+        user_id = random.randint(1, 200)
         product_id = random.choice(product_ids)
         quantity = random.randint(1, 10)
 
