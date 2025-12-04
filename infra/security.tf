@@ -89,7 +89,7 @@ resource "aws_security_group" "traffic_api" {
         cidr_blocks = ["0.0.0.0/0"]
     }
 
-    tags = merge(local.common_tags, {
+    tags =  {
         Name = "${var.project_prefix}-traffic-api"
-    })
+    }
 }
