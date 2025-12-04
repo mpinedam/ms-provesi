@@ -4,8 +4,8 @@ resource "aws_db_instance" "usersdb" {
   engine_version       = "15"
   instance_class       = "db.t3.micro"
   db_name              = "usersdb"
-  username             = "admin"
-  password             = "admin1234"
+  username             = "users_user"
+  password             = "users_password"
   skip_final_snapshot  = true
   publicly_accessible  = false
   vpc_security_group_ids = [aws_security_group.internal.id]
